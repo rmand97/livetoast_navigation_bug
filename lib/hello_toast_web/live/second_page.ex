@@ -3,13 +3,35 @@ defmodule HelloToastWeb.SecondPageLive do
 
   def render(assigns) do
     ~H"""
-    Second page
-    <button class="p-2 bg-blue-200" phx-click="nav">put toast and push_navigate to front page</button>
+    <div class="flex flex-col gap-3">
+      Second page
+      <button class="p-2 bg-blue-200" phx-click="nav">
+        put toast and push_navigate to front page
+      </button>
+      <button class="p-2 bg-green-200" phx-click="no-nav">
+        send toast and no navigation
+      </button>
+    </div>
     """
   end
 
   def handle_event("nav", _unsigned_params, socket) do
-    LiveToast.send_toast(:info, "navigated from page two")
-    {:noreply, socket |> push_navigate(to: ~p"/")}
+    {:noreply,
+     socket
+     |> push_navigate(to: ~p"/")
+     |> LiveToast.put_toast(:info, "We toasting, but should be my own component",
+       component: &test_comp/1
+     )}
+  end
+
+  def handle_event("no-nav", _unsigned_params, socket) do
+    LiveToast.send_toast(:info, "We Toasting", component: &test_comp/1)
+    {:noreply, socket}
+  end
+
+  def test_comp(assigns) do
+    ~H"""
+    My component second page
+    """
   end
 end
