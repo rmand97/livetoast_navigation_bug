@@ -55,7 +55,7 @@ defmodule HelloToast.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:live_toast, git: "https://github.com/srcrip/live_toast", branch: "master"}
+      {:live_toast, git: "https://github.com/srcrip/live_toast", branch: "prepare-release-0.8"}
     ]
   end
 

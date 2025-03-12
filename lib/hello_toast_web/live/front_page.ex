@@ -4,7 +4,7 @@ defmodule HelloToastWeb.FrontPageLive do
   def render(assigns) do
     ~H"""
     <div class="flex flex-col gap-3">
-      First page
+      <span class="p-2 bg-red-300 mx-auto">First page</span>
       <button class="p-2 bg-blue-200" phx-click="nav">
         put toast and push_navigate to second page
       </button>
